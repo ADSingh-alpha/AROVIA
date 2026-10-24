@@ -163,6 +163,7 @@ async def execute_deal_closure(
             closure_date=datetime.now(timezone.utc)
         )
         db.add(commitment)
+        db.flush()  # Generates commitment.id
 
         # Cap Table Calculation
         equity_ratio = float(commitment_in.equity_percent) / 100.0
