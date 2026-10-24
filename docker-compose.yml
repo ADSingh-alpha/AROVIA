@@ -139,11 +139,17 @@ services:
       "
       echo 'Waiting for Kafka cluster to stabilize...'
       sleep 10
+      /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka-1:9092 --create --if-not-exists --topic pitch-events --partitions 3 --replication-factor 3
+      /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka-1:9092 --create --if-not-exists --topic investment-offers --partitions 3 --replication-factor 3
+      /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka-1:9092 --create --if-not-exists --topic startup.pitches.submitted --partitions 3 --replication-factor 3
+      /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka-1:9092 --create --if-not-exists --topic pitch.registered --partitions 3 --replication-factor 3
+      /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka-1:9092 --create --if-not-exists --topic startup.pitches.dlq --partitions 3 --replication-factor 3
+      /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka-1:9092 --create --if-not-exists --topic investment.offers.dlq --partitions 3 --replication-factor 3
       /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka-1:9092 --create --if-not-exists --topic pitch.created --partitions 3 --replication-factor 3
       /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka-1:9092 --create --if-not-exists --topic pitch.live --partitions 3 --replication-factor 3
       /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka-1:9092 --create --if-not-exists --topic offer.submitted --partitions 3 --replication-factor 3
       /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka-1:9092 --create --if-not-exists --topic commitment.accepted --partitions 3 --replication-factor 3
-      echo 'All AROVIA Kafka topics verified successfully!'
+      echo 'All AROVIA Kafka topics & DLQs verified successfully!'
       "
     networks:
       - arovia-network
