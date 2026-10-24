@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Bitcount+Ink:wght@100..900&family=Bitcount+Single:wght@100..900&family=Concert+One&family=Fascinate+Inline&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Titan+One&display=swap');
+
 /* =============================================================================
    AROVIA Global Styles
    The WebGL laser canvas is the background — all elements above it must be

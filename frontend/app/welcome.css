@@ -1,0 +1,253 @@
+/* ============================================================
+   AROVIA — Welcome Page Styles
+   Orbitron + Bitcount fonts, vivid multicolor gradient text,
+   and pill-shaped liquid-glass CTA buttons.
+   ============================================================ */
+
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Bitcount+Ink:wght@100..900&family=Bitcount+Single:wght@100..900&family=Concert+One&family=Fascinate+Inline&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Titan+One&display=swap');
+
+/* ── AROVIA logotype ── */
+.arovia-logotype {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: clamp(4rem, 14vw, 11rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+
+  /* Vivid 7-stop multicolor gradient */
+  background: linear-gradient(
+    135deg,
+    #ff006e 0%,
+    #fb5607 12%,
+    #ffbe0b 24%,
+    #3a86ff 40%,
+    #8338ec 55%,
+    #06d6a0 72%,
+    #ff006e 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 6s ease infinite;
+}
+
+/* Subtle second-line tagline font */
+.arovia-tagline {
+  font-family: 'Titan One', 'Concert One', cursive;
+  font-weight: 400;
+  font-size: clamp(1rem, 3.5vw, 2rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+
+  background: linear-gradient(
+    90deg,
+    #fb5607 0%,
+    #ffbe0b 35%,
+    #06d6a0 70%,
+    #3a86ff 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 8s ease infinite reverse;
+}
+
+/* Subtle sub-tagline */
+.arovia-sub {
+  font-family: 'Noto Sans', system-ui, sans-serif;
+  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
+}
+
+/* Gradient shift animation */
+@keyframes gradientShift {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+/* ── Liquid Glass Button ── */
+/*
+  Uses backdrop-filter + SVG feGaussianBlur turbulence trick for
+  the frosted "liquid glass" look without any JS dependency.
+*/
+.liquid-glass-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2.2rem;
+  border-radius: 9999px;           /* pill */
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  cursor: pointer;
+  font-family: 'Noto Sans', system-ui, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform 180ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+
+  /* Frosted glass fill */
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(18px) saturate(1.6);
+  -webkit-backdrop-filter: blur(18px) saturate(1.6);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.18),
+    0 4px 32px rgba(0, 0, 0, 0.28);
+}
+
+/* Liquid refraction shimmer layer */
+.liquid-glass-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.04) 40%,
+    rgba(255, 255, 255, 0.14) 100%
+  );
+  opacity: 0;
+  transition: opacity 220ms ease;
+  pointer-events: none;
+}
+
+/* Color accent glow per variant */
+.liquid-glass-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  opacity: 0.18;
+  transition: opacity 220ms ease;
+  pointer-events: none;
+}
+
+.liquid-glass-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.12),
+    0 8px 40px rgba(0, 0, 0, 0.36);
+}
+
+.liquid-glass-btn:hover::before { opacity: 1; }
+.liquid-glass-btn:hover::after  { opacity: 0.35; }
+
+.liquid-glass-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ── Button color variants ── */
+.liquid-glass-btn--startup::after {
+  background: radial-gradient(circle at center, #8338ec, transparent 70%);
+}
+.liquid-glass-btn--startup {
+  --glow: rgba(131, 56, 236, 0.55);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    inset 0 -1px 0 rgba(0,0,0,0.18),
+    0 0 24px var(--glow),
+    0 4px 32px rgba(0,0,0,0.28);
+}
+.liquid-glass-btn--startup:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.35),
+    0 0 40px var(--glow),
+    0 8px 40px rgba(0,0,0,0.36);
+}
+
+.liquid-glass-btn--investor::after {
+  background: radial-gradient(circle at center, #ffbe0b, transparent 70%);
+}
+.liquid-glass-btn--investor {
+  --glow: rgba(251, 86, 7, 0.5);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    inset 0 -1px 0 rgba(0,0,0,0.18),
+    0 0 24px var(--glow),
+    0 4px 32px rgba(0,0,0,0.28);
+}
+.liquid-glass-btn--investor:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.35),
+    0 0 40px var(--glow),
+    0 8px 40px rgba(0,0,0,0.36);
+}
+
+.liquid-glass-btn--demo::after {
+  background: radial-gradient(circle at center, #06d6a0, transparent 70%);
+}
+.liquid-glass-btn--demo {
+  --glow: rgba(6, 214, 160, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    inset 0 -1px 0 rgba(0,0,0,0.18),
+    0 0 24px var(--glow),
+    0 4px 32px rgba(0,0,0,0.28);
+}
+.liquid-glass-btn--demo:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.35),
+    0 0 40px var(--glow),
+    0 8px 40px rgba(0,0,0,0.36);
+}
+
+/* Button icon */
+.liquid-glass-btn__icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  opacity: 0.75;
+  flex-shrink: 0;
+}
+
+/* ── Scroll hint ── */
+.scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0.28;
+  animation: fadeUpDown 2.4s ease-in-out infinite;
+}
+.scroll-hint__bar {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.6), transparent);
+}
+@keyframes fadeUpDown {
+  0%, 100% { transform: translateY(0);   opacity: 0.28; }
+  50%       { transform: translateY(6px); opacity: 0.55; }
+}
+
+/* ── Pulse ring behind logo ── */
+.pulse-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(131, 56, 236, 0.25);
+  animation: pulseRing 3s ease-out infinite;
+  pointer-events: none;
+}
+.pulse-ring:nth-child(2) { animation-delay: 1s; }
+.pulse-ring:nth-child(3) { animation-delay: 2s; }
+@keyframes pulseRing {
+  0%   { transform: scale(0.6); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0;   }
+}
