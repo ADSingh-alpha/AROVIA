@@ -1,0 +1,38 @@
+{
+  "name": "arovia-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AROVIA — The Online Pitching Platform. Shark Tank meets the Internet.",
+  "workspaces": [
+    "frontend",
+    "backend/api-gateway",
+    "backend/auth-service",
+    "backend/pitch-service",
+    "backend/live-session-service",
+    "backend/ledger-service",
+    "backend/packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\"",
+    "infra:up": "docker-compose up -d",
+    "infra:down": "docker-compose down",
+    "infra:logs": "docker-compose logs -f",
+    "infra:reset": "docker-compose down -v && docker-compose up -d"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "prettier": "^3.3.0",
+    "typescript": "^5.5.0",
+    "@types/node": "^20.14.0",
+    "eslint": "^9.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "yarn": ">=1.22.0"
+  },
+  "packageManager": "yarn@1.22.22"
+}
