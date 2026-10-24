@@ -3,7 +3,7 @@
 
 from datetime import datetime
 from typing import Optional, Any, Dict
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 
 class LiveRoomCreate(BaseModel):
@@ -20,8 +20,7 @@ class LiveRoomResponse(BaseModel):
     started_at: datetime
     ended_at: Optional[datetime] = None
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class QACreate(BaseModel):
@@ -43,8 +42,7 @@ class QAResponse(BaseModel):
     answered_by: Optional[str] = None
     created_at: datetime
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class WebRTCSignalMessage(BaseModel):
