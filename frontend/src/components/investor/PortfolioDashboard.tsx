@@ -99,7 +99,7 @@ export function PortfolioDashboard() {
                   </Pie>
                   <Tooltip
                     contentStyle={{ background: "#0a0a0a", border: "1px solid rgba(255,255,255,0.1)", fontSize: 11, color: "#fff" }}
-                    formatter={(v: number) => [fmt(v), "Invested"]}
+                    formatter={(v: any) => [fmt(Number(v) || 0), "Invested"]}
                   />
                 </PieChart>
               </ResponsiveContainer>
@@ -121,7 +121,7 @@ export function PortfolioDashboard() {
                   <XAxis dataKey="name" tick={{ fontSize: 9, fill: "rgba(255,255,255,0.3)" }} axisLine={false} tickLine={false} />
                   <YAxis tick={{ fontSize: 9, fill: "rgba(255,255,255,0.3)" }} axisLine={false} tickLine={false} tickFormatter={v => `$${v/1000}K`} />
                   <Tooltip contentStyle={{ background: "#0a0a0a", border: "1px solid rgba(255,255,255,0.1)", fontSize: 11, color: "#fff" }}
-                    formatter={(v: number) => [fmt(v)]} />
+                    formatter={(v: any) => [fmt(Number(v) || 0)]} />
                   <Bar dataKey="invested" fill="rgba(131,56,236,0.5)" radius={[4,4,0,0]} />
                   <Bar dataKey="current" fill="rgba(6,214,160,0.5)" radius={[4,4,0,0]} />
                 </BarChart>

@@ -230,7 +230,7 @@ function MetricsPanel({ startup }: { startup: typeof STARTUPS[0] }) {
             </defs>
             <XAxis dataKey="month" tick={{ fontSize:9, fill:"rgba(255,255,255,0.3)" }} axisLine={false} tickLine={false} />
             <Tooltip contentStyle={{ background:"#0a0a0a", border:"1px solid rgba(255,255,255,0.1)", fontSize:10, color:"#fff" }}
-              formatter={(v:number) => [fmt(v), "Revenue"]} />
+              formatter={(v: any) => [fmt(Number(v) || 0), "Revenue"]} />
             <Area type="monotone" dataKey="revenue" stroke={startup.color} strokeWidth={2} fill="url(#rev)" dot={false} />
           </AreaChart>
         </ResponsiveContainer>
@@ -243,7 +243,7 @@ function MetricsPanel({ startup }: { startup: typeof STARTUPS[0] }) {
           <LineChart data={startup.metrics}>
             <XAxis dataKey="month" tick={{ fontSize:9, fill:"rgba(255,255,255,0.3)" }} axisLine={false} tickLine={false} />
             <Tooltip contentStyle={{ background:"#0a0a0a", border:"1px solid rgba(255,255,255,0.1)", fontSize:10, color:"#fff" }}
-              formatter={(v:number) => [(v/1000).toFixed(1)+"K", "Users"]} />
+              formatter={(v: any) => [((Number(v) || 0)/1000).toFixed(1)+"K", "Users"]} />
             <Line type="monotone" dataKey="users" stroke="#3a86ff" strokeWidth={2} dot={false} />
           </LineChart>
         </ResponsiveContainer>
