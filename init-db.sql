@@ -64,9 +64,7 @@ CREATE TABLE IF NOT EXISTS pitches (
     video_url VARCHAR(1024),
     ask_amount NUMERIC(15, 2) NOT NULL,
     equity_percentage NUMERIC(5, 2) NOT NULL,
-    valuation NUMERIC(15, 2) GENERATED ALWAYS AS (
-        CASE WHEN equity_percentage > 0 THEN (ask_amount / (equity_percentage / 100.0)) ELSE 0.00 END
-    ) STORED,
+    valuation NUMERIC(15, 2) DEFAULT 0.00,
     status VARCHAR(50) NOT NULL DEFAULT 'PENDING' CHECK (status IN ('PENDING', 'APPROVED', 'LIVE', 'FUNDED', 'REJECTED')),
     live_room_id VARCHAR(100),
     scheduled_at TIMESTAMPTZ,

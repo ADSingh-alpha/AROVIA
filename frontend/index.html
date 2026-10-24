@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AROVIA — Online Shark Tank Pitching Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --card-bg: rgba(18, 24, 38, 0.75);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --accent-cyan: #00f2fe;
+            --accent-blue: #4facfe;
+            --accent-purple: #7f00ff;
+            --accent-green: #00e676;
+            --text-main: #f0f4f8;
+            --text-muted: #8a99ad;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(0, 242, 254, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(127, 0, 255, 0.08) 0%, transparent 40%);
+            padding: 2.5rem 1.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--card-border);
+            margin-bottom: 2.5rem;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-badge {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: #06090e;
+            font-weight: 800;
+            font-size: 1.4rem;
+            padding: 0.4rem 0.9rem;
+            border-radius: 10px;
+            letter-spacing: 1px;
+        }
+
+        .logo-title h1 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-title p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .header-status {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: rgba(0, 230, 118, 0.1);
+            border: 1px solid rgba(0, 230, 118, 0.3);
+            color: var(--accent-green);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: var(--accent-green);
+            box-shadow: 0 0 10px var(--accent-green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.85); }
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(12px);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(0, 242, 254, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .card-header h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .tag {
+            font-size: 0.72rem;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 0.2rem 0.5rem;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(0, 242, 254, 0.2);
+        }
+
+        .card-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1.2rem;
+        }
+
+        .api-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .api-link:hover {
+            text-decoration: underline;
+        }
+
+        .terminal-box {
+            background: #06090e;
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        pre {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #d1d9e6;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        .highlight-green { color: var(--accent-green); }
+        .highlight-cyan { color: var(--accent-cyan); }
+        .highlight-purple { color: #b388ff; }
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--card-border);
+            padding-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-wrap">
+                <div class="logo-badge">AROVIA</div>
+                <div class="logo-title">
+                    <h1>Online Shark Tank Pitching Platform</h1>
+                    <p>Core Backend, Kafka Event Pipelines & PostgreSQL ACID Ledgers</p>
+                </div>
+            </div>
+            <div class="header-status">
+                <div class="pulse-dot"></div>
+                <span>Services Active</span>
+            </div>
+        </header>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Auth Service (RBAC)</h3>
+                    <span class="tag">JWT / HS256</span>
+                </div>
+                <p class="card-desc">
+                    Role-Based Access Control supporting Startup Founders, Angel Investors, and Admins.
+                </p>
+                <a class="api-link" href="http://localhost:8000/docs#/Authentication%20%26%20RBAC" target="_blank">View API Specs &rarr;</a>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Pitch Pipeline</h3>
+                    <span class="tag">Kafka Producer</span>
+                </div>
+                <p class="card-desc">
+                    Submits pitch decks, performs metadata validation, calculates implied valuations, and publishes <code>startup.pitches.submitted</code>.
+                </p>
+                <a class="api-link" href="http://localhost:8000/docs#/Pitch%20Pipeline" target="_blank">View API Specs &rarr;</a>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Live Pitching Room</h3>
+                    <span class="tag">WebSockets / WebRTC</span>
+                </div>
+                <p class="card-desc">
+                    WebRTC signaling gateway for SDP offer/answer/ICE exchange with live text Q&A logging.
+                </p>
+                <a class="api-link" href="http://localhost:8000/docs#/Live%20Pitching%20Room%20%26%20WebRTC" target="_blank">View API Specs &rarr;</a>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Investment Ledger</h3>
+                    <span class="tag">PostgreSQL ACID</span>
+                </div>
+                <p class="card-desc">
+                    Secure transaction tracking for term sheets, funding commitments, and cap-table equity adjustments.
+                </p>
+                <a class="api-link" href="http://localhost:8000/docs#/Investment%20Ledger%20%26%20Cap%20Table" target="_blank">View API Specs &rarr;</a>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Event Broker (Kafka)</h3>
+                    <span class="tag">KRaft Mode</span>
+                </div>
+                <p class="card-desc">
+                    3-Node Kafka cluster with topic partition routing, error DLQs, and consumer groups.
+                </p>
+                <a class="api-link" href="http://localhost:8080" target="_blank">Open Kafka UI (Port 8080) &rarr;</a>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h3>Notification Worker</h3>
+                    <span class="tag">Background Consumer</span>
+                </div>
+                <p class="card-desc">
+                    Asynchronously matches pitches to accredited angel investors, pushes deal alerts, and maintains audit logs.
+                </p>
+                <a class="api-link" href="http://localhost:8000/health" target="_blank">Check Worker Health &rarr;</a>
+            </div>
+        </div>
+
+        <div class="terminal-box">
+            <div class="terminal-header">
+                <span>Core Asynchronous Pipeline Execution Flow</span>
+                <span>Sprint INF-01 / INF-02 / DAT-01</span>
+            </div>
+            <pre>
+<span class="highlight-cyan">1. Initiation</span>        Founder submits deck via <span class="highlight-purple">POST /pitches/upload</span> -> Persisted to Postgres (<span class="highlight-green">status: PENDING</span>)
+<span class="highlight-cyan">2. Event Publication</span> Emits payload to Kafka topic: <span class="highlight-purple">startup.pitches.submitted</span> &amp; <span class="highlight-purple">pitch.registered</span>
+<span class="highlight-cyan">3. Worker Ingestion</span>  Consumer worker picks event from group <span class="highlight-green">arovia-dealflow-group</span>
+<span class="highlight-cyan">4. Live Broadcast</span>    Pushes dealflow ping to Angel Investors via <span class="highlight-purple">/ws/notifications</span> &amp; logs to <span class="highlight-purple">audit_logs</span>
+<span class="highlight-cyan">5. Deal Closure</span>      Investor makes term sheet &amp; executes <span class="highlight-purple">POST /ledger/commitments</span> with ACID Cap Table update
+            </pre>
+        </div>
+
+        <footer>
+            AROVIA Platform &bull; Engineered for the Online Shark Tank Pitching Hackathon
+        </footer>
+    </div>
+</body>
+</html>
