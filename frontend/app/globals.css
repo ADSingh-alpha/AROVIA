@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+/* =============================================================================
+   AROVIA Global Styles
+   The WebGL laser canvas is the background — all elements above it must be
+   transparent or use semi-transparent dark surfaces.
+   ============================================================================= */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  /* Match the laser canvas base color so there's no flash on load */
+  background-color: #020305;
+  color: #ffffff;
+}
+
+/* Ensure the body never clips the fixed laser canvas */
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Design tokens ── */
+:root {
+  --color-bg: #020305;
+  --color-surface: rgba(4, 5, 14, 0.72);
+  --color-surface-hover: rgba(8, 10, 28, 0.85);
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-active: rgba(255, 255, 255, 0.2);
+  --color-violet: #8b5cf6;
+  --color-amber: #f59e0b;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.6);
+  --color-text-muted: rgba(255, 255, 255, 0.35);
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --radius: 0.5rem;
+  --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Utility: glassmorphism card ── */
+.glass-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: var(--radius);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.glass-card:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-border-active);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Focus ring ── */
+:focus-visible {
+  outline: 2px solid var(--color-violet);
+  outline-offset: 2px;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
