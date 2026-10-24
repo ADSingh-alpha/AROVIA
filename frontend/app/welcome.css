@@ -7,13 +7,22 @@
 /* ── Google Fonts ── */
 @import url('https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&family=Bitcount+Ink:wght@100..900&family=Bitcount+Single:wght@100..900&family=Concert+One&family=Fascinate+Inline&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&family=Titan+One&display=swap');
 
-/* ── AROVIA logotype ── */
+/* ── AROVIA logotype — Bitcount Grid Double ── */
 .arovia-logotype {
-  font-family: 'Orbitron', sans-serif;
+  /* Bitcount Grid Double with exact variation settings from Google Fonts spec */
+  font-family: "Bitcount Grid Double", system-ui;
+  font-optical-sizing: auto;
   font-weight: 900;
-  font-size: clamp(4rem, 14vw, 11rem);
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0,
+    "CRSV" 0.5,
+    "ELSH" 0,
+    "ELXP" 0;
+
+  font-size: clamp(4.5rem, 16vw, 13rem);
   line-height: 1;
-  letter-spacing: -0.02em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 
   /* Vivid 7-stop multicolor gradient */
